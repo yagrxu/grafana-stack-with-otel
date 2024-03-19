@@ -24,7 +24,8 @@ module "vpc" {
     "kubernetes.io/role/internal-elb"           = 1
   }
   public_subnet_tags = {
-    "kubernetes.io/role/elb	" = 1
+    "kubernetes.io/cluster/${var.cluster_name}" = "owned"
+    "kubernetes.io/role/elb" = 1
   }
 }
 
@@ -179,7 +180,8 @@ module "observability" {
   user_ids                = [data.aws_identitystore_user.example.user_id]
   account_id              = data.aws_caller_identity.current.account_id
   depends_on = [
-    module.eks
+    module.eks,
+    module.eks-lb-controller
   ]
 } 
 

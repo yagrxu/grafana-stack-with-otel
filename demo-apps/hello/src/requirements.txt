@@ -2,6 +2,7 @@ boto3
 requests
 flask
 
-opentelemetry-distro[otlp] # also installs opentelemetry-exporter-otlp
+# opentelemetry-distro[otlp] # also installs opentelemetry-exporter-otlp
+opentelemetry-distro[otlp]
 opentelemetry-propagator-aws-xray
 opentelemetry-sdk-extension-aws

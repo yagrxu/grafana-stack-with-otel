@@ -82,39 +82,39 @@ resource "aws_iam_role_policy_attachment" "loki_s3" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 }
 
-# resource "kubernetes_ingress_v1" "loki_read_ingress" {
-#   metadata {
-#     name      = "loki-read-ingress"
-#     namespace = "default"
+resource "kubernetes_ingress_v1" "loki_read_ingress" {
+  metadata {
+    name      = "loki-read-ingress"
+    namespace = "default"
 
-#     annotations = {
-#       "alb.ingress.kubernetes.io/scheme" = "internal"
+    annotations = {
+      "alb.ingress.kubernetes.io/scheme" = "internal"
 
-#       "alb.ingress.kubernetes.io/target-type" = "ip"
-#     }
-#   }
+      "alb.ingress.kubernetes.io/target-type" = "ip"
+    }
+  }
 
-#   spec {
-#     ingress_class_name = "alb"
+  spec {
+    ingress_class_name = "alb"
 
-#     rule {
-#       http {
-#         path {
-#           path      = "/"
-#           path_type = "Prefix"
+    rule {
+      http {
+        path {
+          path      = "/"
+          path_type = "Prefix"
 
-#           backend {
-#             service {
-#               name = "loki-read"
+          backend {
+            service {
+              name = "loki-read"
 
-#               port {
-#                 number = 3100
-#               }
-#             }
-#           }
-#         }
-#       }
-#     }
-#   }
-# }
+              port {
+                number = 3100
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
